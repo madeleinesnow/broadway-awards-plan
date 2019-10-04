@@ -1,0 +1,39 @@
+---
+title: "Milestone 3"
+author: "Madeleine Snow"
+date: "10/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(rvest)
+library(xml2)
+
+```
+
+```{r data, include=FALSE}
+
+tony_awards <- read_html("https://en.wikipedia.org/wiki/Tony_Award_for_Best_Musical")
+
+tony_awards %>% 
+  html_nodes("p") %>% 
+  html_text() %>% 
+  str_remove_all("\n")
+
+```
+
+## Where I will get my data and what I have done so far
+
+For my first data source, I will scrape the list of Tony Award nominees and winners for Best Musical and Best Play awards from the [Tony Award for Best Musical Wikipedia page]("https://en.wikipedia.org/wiki/Tony_Award_for_Best_Musical") and the [Tony Award for Best Play Wikipedia page]("https://en.wikipedia.org/wiki/Tony_Award_for_Best_Play"), parsing through the html using the rvest package. So far, I have viewed the [html sources](view-source:https://en.wikipedia.org/wiki/Tony_Award_for_Best_Musical) and am still working on ways of creating the tables of nominees and winners in R.
+
+For my second data source, I will compile the opening and closing dates of each nominee or winner of the Best Musical and Best Play awards through the [Internet Broadway Database (IBDB)]("https://www.ibdb.com/awards"). So far, I have noticed that some of the shows do not have the opening and closing dates listed on IBDB. Therefore, I think the best method to acquire any data that is missing information from IMDB will be to scrape other sources, including Wikipedia or Stanley Green's [*Broadway Musicals Show By Show*]("https://www.amazon.com/Broadway-Musicals-Show-Show-Eighth/dp/1480385476").
+
+## What I plan to do with my data
+
+My second data source will allow me to calculate total number of performances, as Broadway shows perform 8 shows in 7 days. I will also be able to examine when in the Broadway season shows open and, therefore, proximity to the date of the Tony Awards ceremony each year. I can then create graphics which compare the number of performances of nominees versus winners of plays and musicals which won these prestigious theatrical awards, and these sources will also provide insight into the relationship between seasonal openings and success in the awards. One particular graphic which could provide interesting insights would be a timeline of Tony-winning and/or Tony-nominated shows, marking when each show opened and closed.
+
+## Who I met with
+I met with Kodi Obika for this final project milestone.
